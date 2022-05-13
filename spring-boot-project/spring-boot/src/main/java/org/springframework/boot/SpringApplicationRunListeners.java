@@ -16,15 +16,14 @@
 
 package org.springframework.boot;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
 import org.apache.commons.logging.Log;
-
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.util.ReflectionUtils;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 /**
  * A collection of {@link SpringApplicationRunListener}.
@@ -48,12 +47,14 @@ class SpringApplicationRunListeners {
 		}
 	}
 
+	// 当environment 构建完成，ApplicationContext 创建之前 该方法被调用
 	void environmentPrepared(ConfigurableEnvironment environment) {
 		for (SpringApplicationRunListener listener : this.listeners) {
 			listener.environmentPrepared(environment);
 		}
 	}
 
+	// 当ApplicationContext构建完成时，该方法被调用
 	void contextPrepared(ConfigurableApplicationContext context) {
 		for (SpringApplicationRunListener listener : this.listeners) {
 			listener.contextPrepared(context);
