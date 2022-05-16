@@ -258,6 +258,7 @@ public class SpringApplication {
 
 	private Class<?> deduceMainApplicationClass() {
 		try {
+			// getStackTrace 获取堆栈跟踪 | 什么时候进的堆栈？
 			StackTraceElement[] stackTrace = new RuntimeException().getStackTrace();
 			for (StackTraceElement stackTraceElement : stackTrace) {
 				if ("main".equals(stackTraceElement.getMethodName())) {
