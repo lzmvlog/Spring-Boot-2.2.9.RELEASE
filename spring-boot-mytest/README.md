@@ -37,7 +37,8 @@ public static ConfigurableApplicationContext run(Class<?>[]primarySources,String
 `ConfigFileApplicationListener`加载项目配置文件的监听器，获取配置文件
 
 3、初始化上下文
-创建 `AnnotationConfigServletWebServerApplicationContext`Context上下文时，IOC容器也进行了创建
+创建 `AnnotationConfigServletWebServerApplicationContext` **Context**上下文时，`IOC容器`也进行了创建，`IOC容器`的本质就是`org.springframework.beans.factory.support.DefalutListableBeanFactory`
+
 ![AnnotationConfigServletWebServerApplicationContext](img/AnnotationConfigServletWebServerApplicationContext.png)
 
 4、刷新应用上下文的准备阶段
