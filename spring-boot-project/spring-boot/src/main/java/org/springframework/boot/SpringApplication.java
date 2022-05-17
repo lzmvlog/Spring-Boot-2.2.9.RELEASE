@@ -367,6 +367,7 @@ public class SpringApplication {
 		context.setEnvironment(environment);
 		// 执行容器后置处理
 		postProcessApplicationContext(context);
+		// 应用初始化器
 		applyInitializers(context);
 		// 向各个监听器发送容器已经准备好的事件
 		listeners.contextPrepared(context);
@@ -383,6 +384,7 @@ public class SpringApplication {
 			beanFactory.registerSingleton("springBootBanner", printedBanner);
 		}
 		if (beanFactory instanceof DefaultListableBeanFactory) {
+			// 允许Bean的定义被覆盖
 			((DefaultListableBeanFactory) beanFactory)
 					.setAllowBeanDefinitionOverriding(this.allowBeanDefinitionOverriding);
 		}
@@ -584,6 +586,7 @@ public class SpringApplication {
 			try {
 				switch (this.webApplicationType) {
 				case SERVLET:
+					// org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext
 					contextClass = Class.forName(DEFAULT_SERVLET_WEB_CONTEXT_CLASS);
 					break;
 				case REACTIVE:
@@ -598,6 +601,8 @@ public class SpringApplication {
 						"Unable create a default ApplicationContext, please specify an ApplicationContextClass", ex);
 			}
 		}
+		// BeanUtils.instantiateClass(contextClass) 不但初始化了 AnnotationConfigServletWebServerApplicationContext 类，也就是上下文context
+		// 同样也触发了 GenericApplicationContext 类的构造函数 从而Ioc容器也进行了创建
 		return (ConfigurableApplicationContext) BeanUtils.instantiateClass(contextClass);
 	}
 
@@ -620,6 +625,7 @@ public class SpringApplication {
 			}
 		}
 		if (this.addConversionService) {
+			// BeanFactory 其实就相当于获取了IOC容器 - DefaultListableBeanFactory
 			context.getBeanFactory().setConversionService(ApplicationConversionService.getSharedInstance());
 		}
 	}

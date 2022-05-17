@@ -61,6 +61,7 @@ class SpringApplicationRunListeners {
 		}
 	}
 
+	// 当ApplicationContext完成加载，但是没有被刷新前，该方法被调用
 	void contextLoaded(ConfigurableApplicationContext context) {
 		for (SpringApplicationRunListener listener : this.listeners) {
 			listener.contextLoaded(context);
