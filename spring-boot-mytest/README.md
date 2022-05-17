@@ -48,16 +48,20 @@ public static ConfigurableApplicationContext run(Class<?>[]primarySources,String
 
 > ((DefaultListableBeanFactory)((AnnotationConfigServletWebServerApplicationContext)context).beanFactory).beanDefinitionMap
 
-> springBootMyTestApplication -> {AnnotatedGenericBeanDefinition@4533} "Generic bean: class [com.example.springbootmytest.SpringBootMyTestApplication]; scope=singleton; abstract=false; lazyInit=null; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null"
+下面就是一个启动类Bean的详细信息
+> springBootMyTestApplication -> {AnnotatedGenericBeanDefinition@4533} 
+"Generic bean: class [com.example.springbootmytest.SpringBootMyTestApplication]; scope=singleton; abstract=false; lazyInit=null; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null"
 
 > SpringBoot自动化配置原理？
 
+5、刷新上下文（`Ioc`容器初始化过程的三个步骤）
 
-### `Ioc`容器初始化过程的三个步骤:
+（1）、Resource定位    
 
-1、Resource定位             
-2、BeanDefinition的载入     
-3、注册BeanDefinition
+（2）、BeanDefinition的载入     
+
+（3）、注册BeanDefinition
+
 
 > 如何解析包含 @ComponentScan @Import 等等？
 
