@@ -1,5 +1,7 @@
 package com.example.springbootmytest.controller;
 
+import com.example.springbootstartermytest.pojo.SimpleBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -10,8 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TestController {
 
-	@GetMapping("test")
+	@Autowired
+	public SimpleBean simpleBean;
+
+	@GetMapping("/")
 	public String test(){
+		System.out.println(simpleBean);
 		System.out.println("源码环境搭建成功...");
 		return "源码环境搭建成功";
 	}
