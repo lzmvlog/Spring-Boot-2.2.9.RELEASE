@@ -9,7 +9,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * @author zhangweijian@gridsum.com
+ * @author xiao.zhang
  * @since 2022-05-18
  */
 @Target({ElementType.TYPE})

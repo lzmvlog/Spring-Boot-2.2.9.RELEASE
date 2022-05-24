@@ -58,5 +58,17 @@ public static ConfigurableApplicationContext run(Class<?>[]primarySources,String
 
 > 如何解析包含 @ComponentScan @Import 等等？
 
+刷新`BeanFactory`,获取`ConfigurableListableBeanFactory`注册`Bean`的工厂
+`org.springframework.beans.factory.config.ConfigurableListableBeanFactory.java`
+`postProcessBeanDefinitionRegistry`
+
+判断`ConfigurableListableBeanFactory`是否是`BeanDefinitionRegistry`的子类
+
+将`BeanDefinitionRegistry`加载到`List<BeanDefinitionHolder>`中
+
+判断`BeanDefinitionRegistry`是否是`SingletonBeanRegistry`的子类 -> 将 `BeanDefinitionRegistry`强转成`SingletonBeanRegistry`
+
+解析`List<BeanDefinitionHolder>`，判断类中是否包含`@Component`、`@PropertySources`等
+
 `org.springframework.context.annotation.ConfigurationClassParser`的`doProcessConfigurationClass`
 
