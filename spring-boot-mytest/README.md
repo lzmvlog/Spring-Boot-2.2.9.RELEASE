@@ -62,13 +62,21 @@ public static ConfigurableApplicationContext run(Class<?>[]primarySources,String
 `org.springframework.beans.factory.config.ConfigurableListableBeanFactory.java`
 `postProcessBeanDefinitionRegistry`
 
-判断`ConfigurableListableBeanFactory`是否是`BeanDefinitionRegistry`的子类
+判断`ConfigurableListableBeanFactory`是否是`BeanDefinitionRegistry`的子类，`ConfigurableListableBeanFactory`强转成`BeanDefinitionRegistry`
 
-将`BeanDefinitionRegistry`加载到`List<BeanDefinitionHolder>`中
+从`BeanDefinitionRegistry`中获取`BeanDefinition`,将`BeanDefinitionRegistry`获取到的`BeanDefinition`加载到`List<BeanDefinitionHolder>`中
 
 判断`BeanDefinitionRegistry`是否是`SingletonBeanRegistry`的子类 -> 将 `BeanDefinitionRegistry`强转成`SingletonBeanRegistry`
 
-解析`List<BeanDefinitionHolder>`，判断类中是否包含`@Component`、`@PropertySources`等
+随后将`List<BeanDefinitionHolder>`转换成`Set<BeanDefinitionHolder>`
+
+解析`Set<BeanDefinitionHolder>`，判断`BeanDefinitionHolder`是否是`AnnotatedBeanDefinition`的子类 -> 将 `BeanDefinitionHolder`强转成`AnnotatedBeanDefinition`,并获取`Metadata`,即为`AnnotationMetadata`
+
+将`AnnotationMetadata`初始化为`ConfigurationClass`,从`ConfigurationClass`获取的`Metadata`作为`SourceClass`去解析
 
 `org.springframework.context.annotation.ConfigurationClassParser`的`doProcessConfigurationClass`
+
+判断类中是否包含`@Component`、`@PropertySources`、`@ComponentScan`、`@Import`等
+
+
 
