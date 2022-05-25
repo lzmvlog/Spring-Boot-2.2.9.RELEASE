@@ -1,9 +1,11 @@
 # SpringBoot 启动流程
 
 ```java
-public static ConfigurableApplicationContext run(Class<?>[]primarySources,String[]args){
-        // 两件事：1、初始化SpringApplication 2、执行run方法
-        return new SpringApplication(primarySources).run(args);
+public class SpringApplication {
+    public static ConfigurableApplicationContext run(Class<?>[]primarySources,String[]args){
+            // 两件事：1、初始化SpringApplication 2、执行run方法
+            return new SpringApplication(primarySources).run(args);
+    }
 }
 ```
 
